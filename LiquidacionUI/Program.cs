@@ -9,9 +9,9 @@ namespace LiquidacionUI
 {
     class Program
     {
-        static Bebidas bebidas;
+        static Bebida bebidas;
         static LiquidacionService liquidacionService = new LiquidacionService();
-        static List<Bebidas> lBebidas = new List<Bebidas>();
+        static List<Bebida> lBebidas = new List<Bebida>();
         static int z = 0;
         static void Main(string[] args)
         {
@@ -28,7 +28,8 @@ namespace LiquidacionUI
                 Console.WriteLine("2. Registrar Vino");
                 Console.WriteLine("3. Consultar");
                 Console.WriteLine("4. Eliminar");
-                Console.WriteLine("5. SALIR");
+                Console.WriteLine("5. Modificar");
+                Console.WriteLine("6. SALIR");
                 respuesta = Convert.ToInt32(Console.ReadLine());
                 switch (respuesta)
                 {
@@ -47,6 +48,9 @@ namespace LiquidacionUI
                         Eliminar();
                         break;
                     case 5:
+                        Modificar();
+                        break;
+                    case 6:
                         Console.WriteLine("Gracias por usarnos ");
                         break;
                     
@@ -54,17 +58,17 @@ namespace LiquidacionUI
                         Console.WriteLine("Opcion incorrecta, intente una opcion valida");
                         break;
                 }
-            } while (respuesta != 5);
+            } while (respuesta != 6);
         }
         public static void Guardar()
         {
             if (z == 1)
             {
-                bebidas = new Licores();
+                bebidas = new Licor();
             }
             else if (z == 2)
             {
-                bebidas = new Vinos();
+                bebidas = new Vino();
             }
             
             Console.Clear();
@@ -99,7 +103,7 @@ namespace LiquidacionUI
         public static void Consultar()
         {
             lBebidas = liquidacionService.Consultar();
-            foreach (Bebidas bebidas in lBebidas)
+            foreach (Bebida bebidas in lBebidas)
             {
                 Console.WriteLine("--------------------------");
                 Console.WriteLine($"Numero de liquidacion: {bebidas.NumeroLiquidacion}");
@@ -125,7 +129,7 @@ namespace LiquidacionUI
             int z = 0;
             Console.WriteLine("Digite el numero de liquidacion que desea eliminar");
             numeroLiquidacion = Console.ReadLine();
-            foreach (Bebidas bebidas in lBebidas)
+            foreach (Bebida bebidas in lBebidas)
             {
                 if (bebidas.NumeroLiquidacion.Equals(numeroLiquidacion))
                 {
@@ -142,6 +146,58 @@ namespace LiquidacionUI
                 Console.WriteLine("*Eliminado correctamente*");
             }
 
+        }
+        public static void Modificar()
+        {
+            string numeroLiquidacionModificar;
+            Console.Clear();
+            Console.WriteLine(".: MODIFICAR :.");
+            Console.WriteLine("Digite el numero de la liquidacion que desea modificar");
+            numeroLiquidacionModificar = Console.ReadLine();
+
+            lBebidas = liquidacionService.Consultar();
+            foreach (Bebida bebidas in lBebidas)
+            {
+                if (bebidas.NumeroLiquidacion.Equals(numeroLiquidacionModificar))
+                {
+                    Console.WriteLine($"Numero de liquidacion: {bebidas.NumeroLiquidacion}");
+                    Console.WriteLine($"Nit del contribuyente: {bebidas.NitContribuyente}");
+                    Console.WriteLine($"Razon social: {bebidas.RazonSocialContribuyente}");
+                    Console.WriteLine($"Tipo de impuesto: {bebidas.TipoImpuesto}");
+                    Console.WriteLine($"Base Gravable: {bebidas.BaseGravable}");
+                    Console.WriteLine($"Cantiadad del producto: {bebidas.CantidadProducto}");
+                    Console.WriteLine($"Precio Venta: {bebidas.PrecioVenta}");
+
+                    Console.WriteLine("Numero de liquidacion: ");
+                    bebidas.NumeroLiquidacion = numeroLiquidacionModificar;
+                    Console.WriteLine("Digite Nit del contribuyente: ");
+                    bebidas.NitContribuyente = Console.ReadLine();
+                    Console.WriteLine("Digite razon social del contribuyente: ");
+                    bebidas.RazonSocialContribuyente = Console.ReadLine();
+                    Console.WriteLine("Digite tipo impuesto: ");
+                    bebidas.TipoImpuesto = Console.ReadLine();
+                    Console.WriteLine("Digite base gravable: ");
+                    bebidas.BaseGravable = Convert.ToUInt32(Console.ReadLine());
+                    Console.WriteLine("Digite cantidad del producto: ");
+                    bebidas.CantidadProducto = Convert.ToUInt32(Console.ReadLine());
+                    Console.WriteLine("Digite precio de venta: ");
+                    bebidas.PrecioVenta = Convert.ToUInt32(Console.ReadLine());
+
+                    Console.WriteLine($"Tarifa Especifica: {bebidas.CalcularTarifaEspecifica()}");
+                    Console.WriteLine($"Tarifa Ad Valoren: {bebidas.CalcularTarifaAdValorem()}");
+                    Console.WriteLine($"Valor Especifico: {bebidas.CalcularValorEspecifico()}");
+                    Console.WriteLine($"Valor Ad Valoren: {bebidas.CalcularValorAdValorem()}");
+                    Console.WriteLine($"Valor Al Consumo: {bebidas.CalcularValorConsumo()}");
+
+                    liquidacionService.Modificar(numeroLiquidacionModificar, bebidas);
+
+                    Console.ReadKey();
+
+                    break;
+                }
+            }
+
+            Consultar();
         }
     }
 }

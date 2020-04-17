@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Entity
 {
-    public class Vinos : Bebidas
+    public class Vino : Bebida
     {
         public override float CalcularTarifaEspecifica()
         {

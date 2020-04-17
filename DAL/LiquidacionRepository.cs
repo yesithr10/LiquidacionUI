@@ -10,9 +10,9 @@ namespace DAL
 {
     public class LiquidacionRepository
     {
-        Bebidas bebidas;
+        Bebida bebidas;
         string ruta = "ParcialBebidas.txt";
-        public void Guardar(Bebidas bebidas)
+        public void Guardar(Bebida bebidas)
         {
             FileStream file = new FileStream(ruta, FileMode.Append);
             StreamWriter escritor = new StreamWriter(file);
@@ -22,16 +22,16 @@ namespace DAL
             escritor.Close();
            file.Close();
         }
-        public List<Bebidas> Consultar()
+        public List<Bebida> Consultar()
         {
-            List<Bebidas> lBebidas = new List<Bebidas>();
+            List<Bebida> lBebidas = new List<Bebida>();
             string linea;
 
             TextReader lector;
             lector = new StreamReader(ruta);
             while ((linea = lector.ReadLine()) != null)
             {
-                bebidas = new Licores();
+                bebidas = new Licor();
                 string[] arrayBebidas = linea.Split(';');
 
                 bebidas.NumeroLiquidacion = arrayBebidas[0];
@@ -53,13 +53,13 @@ namespace DAL
         }
         public void Eliminar(string numeroLiquidacion)
         {
-            List<Bebidas> lBebidas = new List<Bebidas>();
+            List<Bebida> lBebidas = new List<Bebida>();
             lBebidas = Consultar();
 
             FileStream file = new FileStream(ruta, FileMode.Create);
             StreamWriter escritor = new StreamWriter(file);
 
-            foreach (Bebidas bebidas in lBebidas)
+            foreach (Bebida bebidas in lBebidas)
             {
                 if (bebidas.NumeroLiquidacion.Equals(numeroLiquidacion))
                 {
@@ -67,7 +67,7 @@ namespace DAL
                     break;
                 }                
             }
-            foreach (Bebidas bebidas in lBebidas)
+            foreach (Bebida bebidas in lBebidas)
             {
                 escritor.WriteLine($"{bebidas.NumeroLiquidacion};{bebidas.NitContribuyente};{bebidas.RazonSocialContribuyente};{bebidas.TipoImpuesto};{bebidas.BaseGravable};" +
                 $"{bebidas.CantidadProducto};{bebidas.PrecioVenta};{bebidas.TarifaEspecifica};{bebidas.TarifaAdValorem};{bebidas.ValorEspecifico};{bebidas.ValorAdValorem};" +
@@ -75,6 +75,11 @@ namespace DAL
             }
             escritor.Close();
             file.Close();
+        }
+        public void Modificar(string numeroLiquidacionModificar,Bebida bebida)
+        {
+            Eliminar(numeroLiquidacionModificar);
+            Guardar(bebida);
         }
 
 

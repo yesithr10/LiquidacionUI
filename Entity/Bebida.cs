@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Entity
 {
-    public abstract class Bebidas
+    public abstract class Bebida
     {
         public string NumeroLiquidacion { get; set; }
         public string NitContribuyente { get; set; }

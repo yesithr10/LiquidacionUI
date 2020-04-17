@@ -11,17 +11,21 @@ namespace BLL
     public class LiquidacionService
     {
         LiquidacionRepository liquidacionRepository = new LiquidacionRepository();
-        public void Guardar(Bebidas bebidas)
+        public void Guardar(Bebida bebidas)
         {
             liquidacionRepository.Guardar(bebidas);
         }
-        public List<Bebidas> Consultar()
+        public List<Bebida> Consultar()
         {
             return liquidacionRepository.Consultar();
         }
         public void Eliminar(string numeroLiquidacion)
         {
             liquidacionRepository.Eliminar(numeroLiquidacion);
+        }
+        public void Modificar(string numeroLiquidacionModificar,Bebida bebidas)
+        {
+            liquidacionRepository.Modificar(numeroLiquidacionModificar,bebidas);
         }
     }
 }
