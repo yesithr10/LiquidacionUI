@@ -1,0 +1,13 @@
+C:\Users\Orlando Rojano\source\repos\LiquidacionUI\LiquidacionUI\bin\Debug\LiquidacionUI.exe.config
+C:\Users\Orlando Rojano\source\repos\LiquidacionUI\LiquidacionUI\bin\Debug\LiquidacionUI.exe
+C:\Users\Orlando Rojano\source\repos\LiquidacionUI\LiquidacionUI\bin\Debug\LiquidacionUI.pdb
+C:\Users\Orlando Rojano\source\repos\LiquidacionUI\LiquidacionUI\bin\Debug\BLL.dll
+C:\Users\Orlando Rojano\source\repos\LiquidacionUI\LiquidacionUI\bin\Debug\Entity.dll
+C:\Users\Orlando Rojano\source\repos\LiquidacionUI\LiquidacionUI\bin\Debug\DAL.dll
+C:\Users\Orlando Rojano\source\repos\LiquidacionUI\LiquidacionUI\bin\Debug\BLL.pdb
+C:\Users\Orlando Rojano\source\repos\LiquidacionUI\LiquidacionUI\bin\Debug\Entity.pdb
+C:\Users\Orlando Rojano\source\repos\LiquidacionUI\LiquidacionUI\bin\Debug\DAL.pdb
+C:\Users\Orlando Rojano\source\repos\LiquidacionUI\LiquidacionUI\obj\Debug\LiquidacionUI.csprojAssemblyReference.cache
+C:\Users\Orlando Rojano\source\repos\LiquidacionUI\LiquidacionUI\obj\Debug\LiquidacionUI.csproj.CopyComplete
+C:\Users\Orlando Rojano\source\repos\LiquidacionUI\LiquidacionUI\obj\Debug\LiquidacionUI.exe
+C:\Users\Orlando Rojano\source\repos\LiquidacionUI\LiquidacionUI\obj\Debug\LiquidacionUI.pdb
